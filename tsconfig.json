@@ -1,0 +1,54 @@
+{
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+    // File Layout
+    "rootDir": "./src", // Segun deepseek
+    "outDir": "./dist",
+
+    // Environment Settings
+    // See also https://aka.ms/tsconfig/module
+    // "module": "nodenext",
+    // "target": "esnext",
+    "module": "ES6", // Segun deepseek
+    "target": "ES6", // Segun deepseek
+    "lib": ["ES6", "DOM", "DOM.Iterable"], // Segun deepseek
+    "types": [],
+    // For nodejs:
+    // "lib": ["esnext"],
+    // "types": ["node"],
+    // and npm install -D @types/node
+
+    // Other Outputs
+    "sourceMap": true,
+    "declaration": false, // Segun deepseek
+    "declarationMap": false, // Segun deepseek
+
+    // Stricter Typechecking Options
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+
+    // Style Options
+    // "noImplicitReturns": true,
+    // "noImplicitOverride": true,
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true,
+    // "noFallthroughCasesInSwitch": true,
+    // "noPropertyAccessFromIndexSignature": true,
+
+    // Recommended Options
+    "strict": true,
+    // "jsx": "react-jsx", // Segun deepseek
+    "verbatimModuleSyntax": false, // Segun deepseek
+    "isolatedModules": true,
+    // "noUncheckedSideEffectImports": true, // Segun deepseek
+    // "moduleDetection": "force", // Segun deepseek
+    "skipLibCheck": true,
+
+    // Segun deepseek
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["src/**/*"], // Segun deepseek
+  "exclude": ["node_modules", "dist"] // Segun deepseek
+}

@@ -1,0 +1,22 @@
+{
+  "name": "home",
+  "version": "1.0.0",
+  "description": "Official Black Anvil Softworks' website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blackanvilsoftworks/home.git"
+  },
+  "author": "Black Anvil Softworks",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blackanvilsoftworks/home/issues"
+  },
+  "homepage": "https://github.com/blackanvilsoftworks/home#readme",
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
