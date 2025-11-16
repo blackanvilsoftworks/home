@@ -1,5 +1,7 @@
 // Export for module compatibility
-export { ThemeManager, SidebarManager, ScrollAnimations, ContactFormHandler };
+export { ThemeManager, SidebarManager, 
+// ScrollAnimations, 
+ContactFormHandler };
 class ThemeManager {
     constructor() {
         this.currentTheme = localStorage.getItem('theme') === 'light' ? 'light' : 'dark';
@@ -113,47 +115,48 @@ class SidebarManager {
     }
 }
 // Scroll Animations
-class ScrollAnimations {
-    constructor() {
-        this.fadeElements = document.querySelectorAll('.fade-in');
-        this.init();
-    }
-    init() {
-        this.setupScrollAnimations();
-    }
-    setupScrollAnimations() {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
-        this.fadeElements.forEach(element => {
-            observer.observe(element);
-        });
-        // Add fade-in class to elements that should animate
-        this.addFadeInClassToElements();
-    }
-    addFadeInClassToElements() {
-        const elementsToAnimate = [
-            '.value-card',
-            '.project-card',
-            '.stack-item',
-            '.contact-method',
-            '.hero-content',
-            '.hero-visual'
-        ];
-        // elementsToAnimate.forEach(selector => {
-        //     document.querySelectorAll(selector).forEach(element => {
-        //         element.classList.add('fade-in');
-        //     });
-        // });
-    }
-}
+// class ScrollAnimations {
+//     private fadeElements: NodeListOf<Element>;
+//     constructor() {
+//         this.fadeElements = document.querySelectorAll('.fade-in');
+//         this.init();
+//     }
+//     private init(): void {
+//         this.setupScrollAnimations();
+//     }
+//     private setupScrollAnimations(): void {
+//         const observer = new IntersectionObserver((entries) => {
+//             entries.forEach(entry => {
+//                 if (entry.isIntersecting) {
+//                     entry.target.classList.add('visible');
+//                 }
+//             });
+//         }, {
+//             threshold: 0.1,
+//             rootMargin: '0px 0px -50px 0px'
+//         });
+//         this.fadeElements.forEach(element => {
+//             observer.observe(element);
+//         });
+//         // Add fade-in class to elements that should animate
+//         this.addFadeInClassToElements();
+//     }
+//     private addFadeInClassToElements(): void {
+//         const elementsToAnimate = [
+//             '.value-card',
+//             '.project-card',
+//             '.stack-item',
+//             '.contact-method',
+//             '.hero-content',
+//             '.hero-visual'
+//         ];
+//         // elementsToAnimate.forEach(selector => {
+//         //     document.querySelectorAll(selector).forEach(element => {
+//         //         element.classList.add('fade-in');
+//         //     });
+//         // });
+//     }
+// }
 // Contact Form Handler
 class ContactFormHandler {
     constructor() {
@@ -175,6 +178,7 @@ class ContactFormHandler {
         const data = Object.fromEntries(formData);
         // Here you would typically send the data to your backend
         console.log('Form data:', data);
+        // https://chat.deepseek.com/share/245t9e3x8le56kszs4 Revisar para menejo de evnío de email
         // Show success message
         this.showSuccessMessage();
         // Reset form
@@ -195,7 +199,7 @@ class ContactFormHandler {
 document.addEventListener('DOMContentLoaded', () => {
     new ThemeManager();
     new SidebarManager();
-    new ScrollAnimations();
+    // new ScrollAnimations();
     new ContactFormHandler();
 });
 // // Export for module compatibility
