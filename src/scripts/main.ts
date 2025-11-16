@@ -58,16 +58,16 @@ class ThemeManager {
 class SidebarManager {
     private sidebar         : HTMLElement | null;
     private sidebarToggle   : HTMLElement | null;
-    private navLinks        : NodeListOf<HTMLAnchorElement>;
-    private sections        : NodeListOf<HTMLElement>;
+    // private navLinks        : NodeListOf<HTMLAnchorElement>;
+    // private sections        : NodeListOf<HTMLElement>;
     private isCollapsed     : boolean;
 
     constructor() {
-        this.sidebar = document.getElementById('sidebar');
-        this.sidebarToggle = document.getElementById('sidebarToggle');
-        this.navLinks = document.querySelectorAll('.sidebar-nav .nav-link');
-        this.sections = document.querySelectorAll('.section');
-        this.isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
+        this.sidebar        = document.getElementById('sidebar');
+        this.sidebarToggle  = document.getElementById('sidebarToggle');
+        // this.navLinks       = document.querySelectorAll('.sidebar-nav .nav-link');
+        // this.sections       = document.querySelectorAll('.section');
+        this.isCollapsed    = localStorage.getItem('sidebarCollapsed') === 'true';
         
         this.init();
     }
@@ -101,30 +101,30 @@ class SidebarManager {
     }
 
     private setupNavigation(): void {
-        this.navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetSection = link.getAttribute('data-section');
-                this.showSection(targetSection);
-                this.setActiveNavLink(link);
-            });
-        });
+        // this.navLinks.forEach(link => {
+        //     link.addEventListener('click', (e) => {
+        //         e.preventDefault();
+        //         // const targetSection = link.getAttribute('data-section');
+        //         // this.showSection(targetSection);
+        //         // this.setActiveNavLink(link);
+        //     });
+        // });
 
         // Show initial section
-        this.showSection('home');
+        this.showSection();
     }
 
-    private showSection(sectionId: string | null): void {
-        this.sections.forEach(section => {
-            section.classList.remove('active');
-        });
+    private showSection(): void {
+        // this.sections.forEach(section => {
+        //     section.classList.remove('active');
+        // });
 
-        if (sectionId) {
-            const targetSection = document.getElementById(sectionId);
-            if (targetSection) {
-                targetSection.classList.add('active');
-            }
-        }
+        // if (sectionId) {
+        //     const targetSection = document.getElementById(sectionId);
+        //     if (targetSection) {
+        //         targetSection.classList.add('active');
+        //     }
+        // }
 
         // Close sidebar on mobile after selection
         if (window.innerWidth <= 768) {
@@ -132,12 +132,12 @@ class SidebarManager {
         }
     }
 
-    private setActiveNavLink(activeLink: HTMLAnchorElement): void {
-        this.navLinks.forEach(link => {
-            link.classList.remove('active');
-        });
-        activeLink.classList.add('active');
-    }
+    // private setActiveNavLink(activeLink: HTMLAnchorElement): void {
+    //     this.navLinks.forEach(link => {
+    //         link.classList.remove('active');
+    //     });
+    //     activeLink.classList.add('active');
+    // }
 
     public getSidebarState(): boolean {
         return this.isCollapsed;
@@ -187,11 +187,11 @@ class ScrollAnimations {
             '.hero-visual'
         ];
 
-        elementsToAnimate.forEach(selector => {
-            document.querySelectorAll(selector).forEach(element => {
-                element.classList.add('fade-in');
-            });
-        });
+        // elementsToAnimate.forEach(selector => {
+        //     document.querySelectorAll(selector).forEach(element => {
+        //         element.classList.add('fade-in');
+        //     });
+        // });
     }
 }
 

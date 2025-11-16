@@ -1,14 +1,29 @@
+// Export for module compatibility
+export { ThemeManager, SidebarManager, ScrollAnimations, ContactFormHandler };
 class ThemeManager {
     constructor() {
-        this.currentTheme = localStorage.getItem('theme') || 'dark';
+        this.currentTheme = localStorage.getItem('theme') === 'light' ? 'light' : 'dark';
         this.themeToggle = document.getElementById('themeToggle');
         this.themeIcon = document.getElementById('themeIcon');
         this.themeText = this.themeToggle?.querySelector('.nav-text');
         this.init();
     }
     init() {
-        this.applyTheme(this.currentTheme);
+        this.applyTheme();
         this.setupEventListeners();
+    }
+    applyTheme() {
+        document.documentElement.setAttribute('data-theme', this.currentTheme);
+        if (this.themeIcon && this.themeText) {
+            if (this.currentTheme === 'dark') {
+                this.themeIcon.className = 'fas fa-moon';
+                this.themeText.textContent = 'Tema Oscuro';
+            }
+            else {
+                this.themeIcon.className = 'fas fa-sun';
+                this.themeText.textContent = 'Tema Claro';
+            }
+        }
     }
     setupEventListeners() {
         if (this.themeToggle) {
@@ -19,21 +34,8 @@ class ThemeManager {
     }
     toggleTheme() {
         this.currentTheme = this.currentTheme === 'dark' ? 'light' : 'dark';
-        this.applyTheme(this.currentTheme);
+        this.applyTheme();
         localStorage.setItem('theme', this.currentTheme);
-    }
-    applyTheme(theme) {
-        document.documentElement.setAttribute('data-theme', theme);
-        if (this.themeIcon && this.themeText) {
-            if (theme === 'dark') {
-                this.themeIcon.className = 'fas fa-moon';
-                this.themeText.textContent = 'Tema Oscuro';
-            }
-            else {
-                this.themeIcon.className = 'fas fa-sun';
-                this.themeText.textContent = 'Tema Claro';
-            }
-        }
     }
     getCurrentTheme() {
         return this.currentTheme;
@@ -44,8 +46,8 @@ class SidebarManager {
     constructor() {
         this.sidebar = document.getElementById('sidebar');
         this.sidebarToggle = document.getElementById('sidebarToggle');
-        this.navLinks = document.querySelectorAll('.sidebar-nav .nav-link');
-        this.sections = document.querySelectorAll('.section');
+        // this.navLinks       = document.querySelectorAll('.sidebar-nav .nav-link');
+        // this.sections       = document.querySelectorAll('.section');
         this.isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
         this.init();
     }
@@ -74,38 +76,38 @@ class SidebarManager {
         }
     }
     setupNavigation() {
-        this.navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetSection = link.getAttribute('data-section');
-                this.showSection(targetSection);
-                this.setActiveNavLink(link);
-            });
-        });
+        // this.navLinks.forEach(link => {
+        //     link.addEventListener('click', (e) => {
+        //         e.preventDefault();
+        //         // const targetSection = link.getAttribute('data-section');
+        //         // this.showSection(targetSection);
+        //         // this.setActiveNavLink(link);
+        //     });
+        // });
         // Show initial section
-        this.showSection('home');
+        this.showSection();
     }
-    showSection(sectionId) {
-        this.sections.forEach(section => {
-            section.classList.remove('active');
-        });
-        if (sectionId) {
-            const targetSection = document.getElementById(sectionId);
-            if (targetSection) {
-                targetSection.classList.add('active');
-            }
-        }
+    showSection() {
+        // this.sections.forEach(section => {
+        //     section.classList.remove('active');
+        // });
+        // if (sectionId) {
+        //     const targetSection = document.getElementById(sectionId);
+        //     if (targetSection) {
+        //         targetSection.classList.add('active');
+        //     }
+        // }
         // Close sidebar on mobile after selection
         if (window.innerWidth <= 768) {
             this.toggleSidebar();
         }
     }
-    setActiveNavLink(activeLink) {
-        this.navLinks.forEach(link => {
-            link.classList.remove('active');
-        });
-        activeLink.classList.add('active');
-    }
+    // private setActiveNavLink(activeLink: HTMLAnchorElement): void {
+    //     this.navLinks.forEach(link => {
+    //         link.classList.remove('active');
+    //     });
+    //     activeLink.classList.add('active');
+    // }
     getSidebarState() {
         return this.isCollapsed;
     }
@@ -145,11 +147,11 @@ class ScrollAnimations {
             '.hero-content',
             '.hero-visual'
         ];
-        elementsToAnimate.forEach(selector => {
-            document.querySelectorAll(selector).forEach(element => {
-                element.classList.add('fade-in');
-            });
-        });
+        // elementsToAnimate.forEach(selector => {
+        //     document.querySelectorAll(selector).forEach(element => {
+        //         element.classList.add('fade-in');
+        //     });
+        // });
     }
 }
 // Contact Form Handler
@@ -196,6 +198,6 @@ document.addEventListener('DOMContentLoaded', () => {
     new ScrollAnimations();
     new ContactFormHandler();
 });
-// Export for module compatibility
-export { ThemeManager, SidebarManager, ScrollAnimations, ContactFormHandler };
+// // Export for module compatibility
+// export { ThemeManager, SidebarManager, ScrollAnimations, ContactFormHandler };
 //# sourceMappingURL=main.js.map

@@ -220,13 +220,14 @@ body {
 
 // Sections
 .section {
-  display: none;
+  display: block;
+//   display: none;
   min-height: 100vh;
   padding: 2rem 0;
 
-  &.active {
-    display: block;
-  }
+//   &.active {
+//     display: block;
+//   }
 }
 
 .section-header {
