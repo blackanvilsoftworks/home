@@ -10,8 +10,10 @@
     // "module": "nodenext",
     // "target": "esnext",
     "module": "ES6", // Segun deepseek
-    "target": "ES6", // Segun deepseek
-    "lib": ["ES6", "DOM", "DOM.Iterable"], // Segun deepseek
+    "target": "ES2020", // Segun deepseek
+    "lib": ["ES2020", "DOM", "DOM.Iterable"], // Segun deepseek
+    // "target": "ES6", // Segun deepseek
+    // "lib": ["ES6", "DOM", "DOM.Iterable"], // Segun deepseek
     "types": [],
     // For nodejs:
     // "lib": ["esnext"],
