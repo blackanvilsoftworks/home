@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home | Black Anvil Softworks</title>
+    <link rel="icon" type="image/x-icon" href="./public/favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -14,7 +15,7 @@
     <nav id="sidebar" class="sidebar">
         <div class="sidebar-header">
             <div class="logo-container">
-                <img src="./src/assets/images/logo.png" alt="Black Anvil Softworks" class="logo">
+                <img src="./src/assets/images/logo.jpeg" alt="Black Anvil Softworks" class="logo">
                 <div class="logo-text">
                     <span class="logo-main">BLACK ANVIL</span>
                     <span class="logo-sub">SOFTWORKS</span>
@@ -114,22 +115,24 @@
                                     <div class="window-title">black_anvil_app.ts</div>
                                 </div>
                                 <div class="code-content">
-                                    <pre><code>class BlackAnvilSolution {
-                                      constructor() {
-                                        this.quality = 'exceptional';
-                                        this.innovation = 'cutting-edge';
-                                        this.reliability = 'rock-solid';
-                                      }
-                                  
-                                      developSoftware(requirements) {
-                                        return this.forgeWithPrecision(requirements);
-                                      }
-                                  
-                                      private forgeWithPrecision(specs) {
-                                        // Artesanía en cada línea de código
-                                        return new Masterpiece(specs);
-                                      }
-                                    }</code></pre>
+<pre><code>
+class BlackAnvilSolution {
+    constructor() {
+        this.quality = 'exceptional';
+        this.innovation = 'cutting-edge';
+        this.reliability = 'rock-solid';
+    }
+    
+    developSoftware(requirements) {
+        return this.forgeWithPrecision(requirements);
+    }
+    
+    private forgeWithPrecision(specs) {
+        // Artesanía en cada línea de código
+        return new Masterpiece(specs);
+    }
+}
+</code></pre>
                                 </div>
                             </div>
                         </div>
@@ -279,6 +282,7 @@
                     <div class="project-card">
                         <div class="project-image">
                             <img src="https://via.placeholder.com/400x250/2C3E50/FFFFFF?text=Sistema+Inventario" alt="Sistema de Inventario">
+                            <!-- <img src="https://blackanvilsoftworks.github.io/CalwillYFiorella/" alt="Sistema de Inventario"> -->
                         </div>
                         <div class="project-content">
                             <h3 class="project-title">Sistema de Gestión de Inventario</h3>
@@ -503,7 +507,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-6">
                         <div class="footer-brand">
-                            <img src="./src/assets/images/logo.png" alt="Black Anvil Softworks" class="footer-logo">
+                            <img src="./src/assets/images/logo.jpeg" alt="Black Anvil Softworks" class="footer-logo">
                             <div class="footer-text">
                                 <span class="footer-main">BLACK ANVIL</span>
                                 <span class="footer-sub">SOFTWORKS</span>
@@ -536,6 +540,6 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./dist/scripts/main.js"></script>
+    <script src="./dist/scripts/main.js" type="module"></script>
 </body>
 </html>

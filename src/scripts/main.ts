@@ -1,21 +1,38 @@
+// Export for module compatibility
+export { ThemeManager, SidebarManager, ScrollAnimations, ContactFormHandler };
+
 class ThemeManager {
-    private currentTheme: string;
-    private themeToggle: HTMLElement | null;
-    private themeIcon: HTMLElement | null;
-    private themeText: HTMLElement | null;
+    private currentTheme: 'dark' | 'light'; // TODO type
+    private themeToggle : HTMLElement | null;
+    private themeIcon   : HTMLElement | null;
+    private themeText   : HTMLElement | null;
 
     constructor() {
-        this.currentTheme = localStorage.getItem('theme') || 'dark';
-        this.themeToggle = document.getElementById('themeToggle');
-        this.themeIcon = document.getElementById('themeIcon');
-        this.themeText = this.themeToggle?.querySelector('.nav-text') as HTMLElement;
+        this.currentTheme   = localStorage.getItem('theme') === 'light' ? 'light' : 'dark';
+        this.themeToggle    = document.getElementById('themeToggle');
+        this.themeIcon      = document.getElementById('themeIcon');
+        this.themeText      = this.themeToggle?.querySelector('.nav-text') as HTMLElement;
         
         this.init();
     }
 
     private init(): void {
-        this.applyTheme(this.currentTheme);
+        this.applyTheme();
         this.setupEventListeners();
+    }
+
+    private applyTheme(): void {
+        document.documentElement.setAttribute('data-theme', this.currentTheme);
+        
+        if (this.themeIcon && this.themeText) {
+            if (this.currentTheme === 'dark') {
+                this.themeIcon.className    = 'fas fa-moon';
+                this.themeText.textContent  = 'Tema Oscuro';
+            } else {
+                this.themeIcon.className    = 'fas fa-sun';
+                this.themeText.textContent  = 'Tema Claro';
+            }
+        }
     }
 
     private setupEventListeners(): void {
@@ -28,22 +45,8 @@ class ThemeManager {
 
     private toggleTheme(): void {
         this.currentTheme = this.currentTheme === 'dark' ? 'light' : 'dark';
-        this.applyTheme(this.currentTheme);
+        this.applyTheme();
         localStorage.setItem('theme', this.currentTheme);
-    }
-
-    private applyTheme(theme: string): void {
-        document.documentElement.setAttribute('data-theme', theme);
-        
-        if (this.themeIcon && this.themeText) {
-            if (theme === 'dark') {
-                this.themeIcon.className = 'fas fa-moon';
-                this.themeText.textContent = 'Tema Oscuro';
-            } else {
-                this.themeIcon.className = 'fas fa-sun';
-                this.themeText.textContent = 'Tema Claro';
-            }
-        }
     }
 
     public getCurrentTheme(): string {
@@ -53,11 +56,11 @@ class ThemeManager {
 
 // Sidebar Manager
 class SidebarManager {
-    private sidebar: HTMLElement | null;
-    private sidebarToggle: HTMLElement | null;
-    private navLinks: NodeListOf<HTMLAnchorElement>;
-    private sections: NodeListOf<HTMLElement>;
-    private isCollapsed: boolean;
+    private sidebar         : HTMLElement | null;
+    private sidebarToggle   : HTMLElement | null;
+    private navLinks        : NodeListOf<HTMLAnchorElement>;
+    private sections        : NodeListOf<HTMLElement>;
+    private isCollapsed     : boolean;
 
     constructor() {
         this.sidebar = document.getElementById('sidebar');
@@ -248,5 +251,5 @@ document.addEventListener('DOMContentLoaded', () => {
     new ContactFormHandler();
 });
 
-// Export for module compatibility
-export { ThemeManager, SidebarManager, ScrollAnimations, ContactFormHandler };
+// // Export for module compatibility
+// export { ThemeManager, SidebarManager, ScrollAnimations, ContactFormHandler };
