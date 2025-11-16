@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sass-watch": "sass --watch src/styles/scss:dist/styles/css"
+    "build": "npm run build:styles && npm run build:scripts",
+    "build:styles": "sass src/styles/main.scss dist/styles/main.css",
+    "build:scripts": "tsc",
+    "watch:styles": "sass --watch src/styles/main.scss dist/styles/main.css",
+    "watch:scripts": "tsc --watch",
+    "dev": "npm run watch:styles & npm run watch:scripts"
   },
   "repository": {
     "type": "git",
@@ -20,5 +25,8 @@
   "devDependencies": {
     "sass": "^1.94.0",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.0"
   }
 }
