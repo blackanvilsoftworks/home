@@ -114,49 +114,6 @@ class SidebarManager {
         return this.isCollapsed;
     }
 }
-// Scroll Animations
-// class ScrollAnimations {
-//     private fadeElements: NodeListOf<Element>;
-//     constructor() {
-//         this.fadeElements = document.querySelectorAll('.fade-in');
-//         this.init();
-//     }
-//     private init(): void {
-//         this.setupScrollAnimations();
-//     }
-//     private setupScrollAnimations(): void {
-//         const observer = new IntersectionObserver((entries) => {
-//             entries.forEach(entry => {
-//                 if (entry.isIntersecting) {
-//                     entry.target.classList.add('visible');
-//                 }
-//             });
-//         }, {
-//             threshold: 0.1,
-//             rootMargin: '0px 0px -50px 0px'
-//         });
-//         this.fadeElements.forEach(element => {
-//             observer.observe(element);
-//         });
-//         // Add fade-in class to elements that should animate
-//         this.addFadeInClassToElements();
-//     }
-//     private addFadeInClassToElements(): void {
-//         const elementsToAnimate = [
-//             '.value-card',
-//             '.project-card',
-//             '.stack-item',
-//             '.contact-method',
-//             '.hero-content',
-//             '.hero-visual'
-//         ];
-//         // elementsToAnimate.forEach(selector => {
-//         //     document.querySelectorAll(selector).forEach(element => {
-//         //         element.classList.add('fade-in');
-//         //     });
-//         // });
-//     }
-// }
 // Contact Form Handler
 class ContactFormHandler {
     constructor() {
