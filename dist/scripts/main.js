@@ -48,6 +48,7 @@ class SidebarManager {
     constructor() {
         this.sidebar = document.getElementById('sidebar');
         this.sidebarToggle = document.getElementById('sidebarToggle');
+        this.sidebarToggleContainer = document.getElementById('sidebarToggleContainer');
         // this.navLinks       = document.querySelectorAll('.sidebar-nav .nav-link');
         // this.sections       = document.querySelectorAll('.section');
         this.isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
@@ -71,8 +72,9 @@ class SidebarManager {
         }
     }
     toggleSidebar() {
-        if (this.sidebar) {
+        if (this.sidebar && this.sidebarToggleContainer) {
             this.sidebar.classList.toggle('collapsed');
+            this.sidebarToggleContainer.classList.toggle('collapsed');
             this.isCollapsed = this.sidebar.classList.contains('collapsed');
             localStorage.setItem('sidebarCollapsed', this.isCollapsed.toString());
         }
