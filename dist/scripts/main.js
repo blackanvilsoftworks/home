@@ -49,19 +49,18 @@ class SidebarManager {
         this.sidebar = document.getElementById('sidebar');
         this.sidebarToggle = document.getElementById('sidebarToggle');
         this.sidebarToggleContainer = document.getElementById('sidebarToggleContainer');
-        // this.navLinks       = document.querySelectorAll('.sidebar-nav .nav-link');
-        // this.sections       = document.querySelectorAll('.section');
         this.isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
         this.init();
     }
     init() {
         this.applySidebarState();
         this.setupEventListeners();
-        this.setupNavigation();
+        // this.setupNavigation();
     }
     applySidebarState() {
-        if (this.isCollapsed && this.sidebar) {
+        if (this.isCollapsed && this.sidebar && this.sidebarToggleContainer) {
             this.sidebar.classList.add('collapsed');
+            this.sidebarToggleContainer.classList.add('collapsed');
         }
     }
     setupEventListeners() {
@@ -79,38 +78,14 @@ class SidebarManager {
             localStorage.setItem('sidebarCollapsed', this.isCollapsed.toString());
         }
     }
-    setupNavigation() {
-        // this.navLinks.forEach(link => {
-        //     link.addEventListener('click', (e) => {
-        //         e.preventDefault();
-        //         // const targetSection = link.getAttribute('data-section');
-        //         // this.showSection(targetSection);
-        //         // this.setActiveNavLink(link);
-        //     });
-        // });
-        // Show initial section
-        this.showSection();
-    }
-    showSection() {
-        // this.sections.forEach(section => {
-        //     section.classList.remove('active');
-        // });
-        // if (sectionId) {
-        //     const targetSection = document.getElementById(sectionId);
-        //     if (targetSection) {
-        //         targetSection.classList.add('active');
-        //     }
-        // }
-        // Close sidebar on mobile after selection
-        if (window.innerWidth <= 768) {
-            this.toggleSidebar();
-        }
-    }
-    // private setActiveNavLink(activeLink: HTMLAnchorElement): void {
-    //     this.navLinks.forEach(link => {
-    //         link.classList.remove('active');
-    //     });
-    //     activeLink.classList.add('active');
+    // private setupNavigation(): void {
+    //     this.showSection();
+    // }
+    // private showSection(): void {
+    //     // Close sidebar on mobile after selection
+    //     if (window.innerWidth <= 768) {
+    //         this.toggleSidebar();
+    //     }
     // }
     getSidebarState() {
         return this.isCollapsed;
