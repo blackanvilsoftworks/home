@@ -106,18 +106,55 @@ class ContactFormHandler {
         }
     }
     async handleSubmit() {
-        if (!this.contactForm)
-            return;
+        if (!this.contactForm) return;
+
+        // Obtenemos los datos del formulario
         const formData = new FormData(this.contactForm);
         const data = Object.fromEntries(formData);
-        // Here you would typically send the data to your backend
-        console.log('Form data:', data);
-        // https://chat.deepseek.com/share/245t9e3x8le56kszs4 Revisar para menejo de evnío de email
-        // Show success message
-        this.showSuccessMessage();
-        // Reset form
-        this.contactForm.reset();
-    }
+
+        // --- Aquí comienza la magia de FormSubmit ---
+        // Mostramos un estado de "cargando" en el botón para mejor UX
+        const submitButton = this.contactForm.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton.innerHTML;
+        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
+        submitButton.disabled = true;
+
+        try {
+            // Realizamos la petición POST a la API AJAX de FormSubmit
+            // Reemplaza 'blackanvilsoftworks@gmail.com' con tu correo si es diferente
+            const response = await fetch('https://formsubmit.co/ajax/blackanvilsoftworks@gmail.com', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                console.log('FormSubmit Success:', result);
+                // Si el envío fue exitoso, mostramos el mensaje de éxito
+                this.showSuccessMessage();
+                // Reseteamos el formulario
+                this.contactForm.reset();
+            } else {
+                // Si FormSubmit devuelve un error, lo mostramos al usuario
+                console.error('FormSubmit Error:', result);
+                alert(`Error al enviar: ${result.message || 'Hubo un problema. Inténtalo de nuevo.'}`);
+                // Restauramos el botón en caso de error
+                submitButton.innerHTML = originalButtonText;
+                submitButton.disabled = false;
+            }
+        } catch (error) {
+            // Capturamos errores de red (ej: no hay internet)
+            console.error('Fetch Error:', error);
+            alert('Error de conexión. Por favor, verifica tu internet e inténtalo de nuevo.');
+            // Restauramos el botón en caso de error
+            submitButton.innerHTML = originalButtonText;
+            submitButton.disabled = false;
+        }
     showSuccessMessage() {
         const submitButton = this.contactForm?.querySelector('button[type="submit"]');
         const originalText = submitButton.innerHTML;
