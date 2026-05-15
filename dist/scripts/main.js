@@ -155,6 +155,7 @@ class ContactFormHandler {
             submitButton.innerHTML = originalButtonText;
             submitButton.disabled = false;
         }
+    }
     showSuccessMessage() {
         const submitButton = this.contactForm?.querySelector('button[type="submit"]');
         const originalText = submitButton.innerHTML;
