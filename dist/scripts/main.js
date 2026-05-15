@@ -1,7 +1,8 @@
 // Export for module compatibility
 export { ThemeManager, SidebarManager, 
 // ScrollAnimations, 
-ContactFormHandler };
+// ContactFormHandler 
+};
 class ThemeManager {
     constructor() {
         this.currentTheme = localStorage.getItem('theme') === 'light' ? 'light' : 'dark';
@@ -92,66 +93,66 @@ class SidebarManager {
     }
 }
 // Contact Form Handler
-class ContactFormHandler {
-    constructor() {
-        this.contactForm = document.getElementById('contactForm');
-        this.init();
-    }
-    init() {
-        if (this.contactForm) {
-            this.contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                this.handleSubmit();
-            });
-        }
-    }
-    async handleSubmit() {
-        if (!this.contactForm) return;
+// class ContactFormHandler {
+//     constructor() {
+//         this.contactForm = document.getElementById('contactForm');
+//         this.init();
+//     }
+//     init() {
+//         if (this.contactForm) {
+//             this.contactForm.addEventListener('submit', (e) => {
+//                 e.preventDefault();
+//                 this.handleSubmit();
+//             });
+//         }
+//     }
+//     async handleSubmit() {
+//         if (!this.contactForm) return;
 
-const submitButton = this.contactForm.querySelector('button[type="submit"]');
-const originalButtonText = submitButton.innerHTML;
-submitButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
-submitButton.disabled = true;
+//         const submitButton = this.contactForm.querySelector('button[type="submit"]');
+//         const originalButtonText = submitButton.innerHTML;
+//         submitButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
+//         submitButton.disabled = true;
 
-try {
-    // Creamos un objeto FormData con los datos del formulario
-    const formData = new FormData(this.contactForm);
+//         try {
+//             // Creamos un objeto FormData con los datos del formulario
+//             const formData = new FormData(this.contactForm);
 
-    // Realizamos la petición POST sin cabeceras 'Content-Type' personalizadas
-    const response = await fetch('https://formsubmit.co/ajax/blackanvilsoftworks@gmail.com', {
-        method: 'POST',
-        body: formData  // 👈 IMPORTANTE: Usamos FormData, no JSON
-    });
+//             // Realizamos la petición POST sin cabeceras 'Content-Type' personalizadas
+//             const response = await fetch('https://formsubmit.co/ajax/blackanvilsoftworks@gmail.com', {
+//                 method: 'POST',
+//                 body: formData  // 👈 IMPORTANTE: Usamos FormData, no JSON
+//             });
 
-    const result = await response.json();
-    console.log(result);
-    this.showSuccessMessage();
-    this.contactForm.reset();
-} catch (error) {
-    console.error('Error:', error);
-    alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
-} finally {
-    submitButton.innerHTML = originalButtonText;
-    submitButton.disabled = false;
-}
-    }
-    showSuccessMessage() {
-        const submitButton = this.contactForm?.querySelector('button[type="submit"]');
-        const originalText = submitButton.innerHTML;
-        submitButton.innerHTML = '<i class="fas fa-check me-2"></i>Mensaje Enviado';
-        submitButton.disabled = true;
-        setTimeout(() => {
-            submitButton.innerHTML = originalText;
-            submitButton.disabled = false;
-        }, 3000);
-    }
-}
+//             const result = await response.json();
+//             console.log(result);
+//             this.showSuccessMessage();
+//             this.contactForm.reset();
+//         } catch (error) {
+//             console.error('Error:', error);
+//             alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
+//         } finally {
+//             submitButton.innerHTML = originalButtonText;
+//             submitButton.disabled = false;
+//         }
+//     }
+//     showSuccessMessage() {
+//         const submitButton = this.contactForm?.querySelector('button[type="submit"]');
+//         const originalText = submitButton.innerHTML;
+//         submitButton.innerHTML = '<i class="fas fa-check me-2"></i>Mensaje Enviado';
+//         submitButton.disabled = true;
+//         setTimeout(() => {
+//             submitButton.innerHTML = originalText;
+//             submitButton.disabled = false;
+//         }, 3000);
+//     }
+// }
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new ThemeManager();
     new SidebarManager();
     // new ScrollAnimations();
-    new ContactFormHandler();
+    // new ContactFormHandler();
 });
 // // Export for module compatibility
 // export { ThemeManager, SidebarManager, ScrollAnimations, ContactFormHandler };
